@@ -6,71 +6,13 @@
         <title>EZweb</title>
         <link type="text/css" rel="stylesheet" href="/css/new_css/css/dot.css">
         <!--手機版程式-->
-        <{include_php file="meta_link.php" }>
-            <script type="text/javascript">function check_idpassenter() {
-                    if (document.getElementById('ideml').value.length == 0) {
-                        //alert(document.getElementById('LoginForm_rememberMe').checked);
-                        alert("請檢查「帳號」欄位，是否空白!");
-                        document.getElementById('ideml').focus();
-                        return false;
-                    }
-                    if (isEmail(document.getElementById('ideml').value)) {
-                        alert("E-mail 欄位，資料格式錯誤！");
-                        document.getElementById('ideml').focus();
-                        return false;
-                    }
-                    if (document.getElementById('idpass1').value.length < 4) {
-                        alert("請檢查「密碼」欄位，需要超過4個字!");
-                        document.getElementById('idpass1').focus();
-                        return false;
-                    }
-                    if (document.getElementById('idpass2').value.length < 4) {
-                        alert("請檢查「確認密碼」欄位，需要超過4個字!");
-                        document.getElementById('idpass2').focus();
-                        return false;
-                    }
-                    if (document.getElementById('idpass1').value != document.getElementById('idpass2').value) {
-                        alert("請檢查「密碼」欄位，「確認密碼」欄位相同!");
-                        document.getElementById('idpass1').value = "";
-                        document.getElementById('idpass2').value = "";
-                        document.getElementById('idpass1').focus();
-                        return false;
-                    }
-                    // if (document.getElementById('verify').value.length == 0)
-                    // {
-                    // alert("請檢查「驗證碼」欄位，是否空白!");
-                    // document.getElementById('verify').focus();
-                    // return false;
-                    // }
-                    if (document.getElementById('LoginForm_rememberMe').checked) {
-
-} else {
-                        alert("您未同意服務條款及隱私政策!");
-                        return false;
-                    }
-
-                    var ideml = document.getElementById('ideml').value;
-                    var idpass1 = document.getElementById('idpass1').value;
-
-                    oc = $.ajax({
-                        url: "index_new_register.php",
-                        type: "POST",
-                        data: {
-                            email: ideml,
-                            password: idpass1
-                        }
-                    });
-                    oc.done(function(msg) {
-
-                        if (msg == "ok") {
-                            alert("申請成功，請在一天內至信箱認證帳號");
-                            location.href = 'index_new.php';
+      
                         } else if (msg == "zhongfu") {
                             alert("帳號有重覆");
                         } else {
                             alert("發信失敗");
                         }
-                    });
+                    });dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
                     oc.fail(function(jqXHR, textStatus) {
                         alert("連線失敗");
                     });
