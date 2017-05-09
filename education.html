@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>EZweb</title>
+        <link type="text/css" rel="stylesheet" href="/css/new_css/css/dot.css">
+        <!--手機版程式-->
+        <{include_php file="meta_link.php" }>
+            <script type="text/javascript">function check_idpassenter() {
+                    if (document.getElementById('ideml').value.length == 0) {
+                        //alert(document.getElementById('LoginForm_rememberMe').checked);
+                        alert("請檢查「帳號」欄位，是否空白!");
+                        document.getElementById('ideml').focus();
+                        return false;
+                    }
+                    if (isEmail(document.getElementById('ideml').value)) {
+                        alert("E-mail 欄位，資料格式錯誤！");
+                        document.getElementById('ideml').focus();
+                        return false;
+                    }
+                    if (document.getElementById('idpass1').value.length < 4) {
+                        alert("請檢查「密碼」欄位，需要超過4個字!");
+                        document.getElementById('idpass1').focus();
+                        return false;
+                    }
+                    if (document.getElementById('idpass2').value.length < 4) {
+                        alert("請檢查「確認密碼」欄位，需要超過4個字!");
+                        document.getElementById('idpass2').focus();
+                        return false;
+                    }
+                    if (document.getElementById('idpass1').value != document.getElementById('idpass2').value) {
+                        alert("請檢查「密碼」欄位，「確認密碼」欄位相同!");
+                        document.getElementById('idpass1').value = "";
+                        document.getElementById('idpass2').value = "";
+                        document.getElementById('idpass1').focus();
+                        return false;
+                    }
+                    // if (document.getElementById('verify').value.length == 0)
+                    // {
+                    // alert("請檢查「驗證碼」欄位，是否空白!");
+                    // document.getElementById('verify').focus();
+                    // return false;
+                    // }
+                    if (document.getElementById('LoginForm_rememberMe').checked) {
+
+} else {
+                        alert("您未同意服務條款及隱私政策!");
+                        return false;
+                    }
+
+                    var ideml = document.getElementById('ideml').value;
+                    var idpass1 = document.getElementById('idpass1').value;
+
+                    oc = $.ajax({
+                        url: "index_new_register.php",
+                        type: "POST",
+                        data: {
+                            email: ideml,
+                            password: idpass1
+                        }
+                    });
+                    oc.done(function(msg) {
+
+                        if (msg == "ok") {
+                            alert("申請成功，請在一天內至信箱認證帳號");
+                            location.href = 'index_new.php';
+                        } else if (msg == "zhongfu") {
+                            alert("帳號有重覆");
+                        } else {
+                            alert("發信失敗");
+                        }
+                    });
+                    oc.fail(function(jqXHR, textStatus) {
+                        alert("連線失敗");
+                    });
+
+                    return false;
+
+                }</script>
+            <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyCfVS1-Dv9bQNOIXsQhTSvj7jaDX7Oocvs"></script>
+            <script src="js/slider/maps-google.js"></script>
+            <script src="js/jssor.slider-23.1.5.min.js" type="text/javascript"></script>
+            <style>section.b-education-detail-box.b-diagonal-line-bg-light.b-infoblock{ border-bottom: 0px;} img.j-data-element.animated.fadeInDown{ margin: 0; } @media (min-width: 768px){.b-column-20p.f-center{display: flex;}} @import url(https://fonts.googleapis.com/earlyaccess/cwtexhei.css); body { font-family: 'Fira Sans Condensed','cwTeXHei', serif; }/*Tab分頁*/ ul.tabs { margin: 0; padding: 0; float: left; list-style: none; height: 32px; border-bottom: 1px solid #f2f2f2; width: 90%; } ul.tabs li { float: left; margin: 0; cursor: pointer; padding: 0px 21px; height: 31px; line-height: 31px; color: #333; border: 1px solid #f2f2f2; position: relative; background-color: white; } ul.tabs li:hover { color: #e26228; }.tab_content { padding: 20px; display: none; } .tab_drawer_heading { display: none; } @media screen and (max-width: 480px) { .tabs { display: none; } .tab_drawer_heading { background-color: #ccc; color: #fff; border-top: 1px solid #333; margin: 0; padding: 5px 20px; display: block; cursor: pointer; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; } .d_active { background-color: #666; color: #fff; } }</style>
+            <link rel="stylesheet" href="css/styletab.css">
+            <link type="text/css" rel="stylesheet" href="/css/new_css/css/hao.css">
+            <link type="text/css" rel="stylesheet" href="/css/new_css/css/tabstyles.css"></head>
+
+    <body>
+        <header>
+            <{include_php file="menu2_new.php" }></header>
+        <!--頁籤-->
+        <div id="main" role="main">
+            <div id="content-homepage" class="clear">
+                <div class="j-menu-container"></div>
+                <div class="b-breadcrumbs f-breadcrumbs b-bg-breadcrumbs">
+                    <div class="container">
+                        <ul>
+                            <li class="f-secondary-l">
+                                <a href="index.php">
+                                    <i class="fa fa-home"></i>首頁</a>
+                            </li>
+                            <li class="f-secondary-l">
+                                <i class="fa fa-angle-right"></i>
+                                <a href="hosting.php">資安服務</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="b-inner-page-header f-inner-page-header b-bg-header-inner-page_2">
+                    <div class="b-inner-page-header__content">
+                        <div class="container">
+                            <h1 class="f-secondary-l c-white">資安服務</h1>
+                            <div class="f-secondary-l c-white f-inner-page-header_title-add">This is listing of cources for education website</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--頁籤-->
+        <div id="main" role="main">
+            <div class="col-md-12">
+                <div class="inner-width">
+                    <div class="about_content reseach_main">
+                        <div class="reseach_header">
+                            <div class="teach_class" id="te_cl">
+                                <a data-toggle="tab" href="#first">
+                                    <p class="bartext activecolor" align="center">SSL憑證</p></a>
+                                <a data-toggle="tab" href="#menu1">
+                                    <p class="bartext" align="center">弱點掃描</p></a>
+                            </div>
+                        </div>
+                        <div class="tab-content reseach_right">
+                            <div id="first" class="tab-pane fade active in">
+
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <{include_php file="footer_new.php" }>
+            <script src="https://d19hkjflplfhx2.cloudfront.net/js/jquery-1.12.3.min_1mch810161010.js"></script>
+            <script src='https://d19hkjflplfhx2.cloudfront.net/g/js/bootstrap3_2g9r9hr150527.js' type='text/javascript'></script>
+            <script src='https://d19hkjflplfhx2.cloudfront.net/g/js/main_3s12tf8161208.js' type='text/javascript'></script>
+            <script type='text/javascript'>$('#emailsignupform').submit(function(g) {
+
+                    var e = $('input[name="email_signup"]');
+                    if (!validate_input(e.attr('name'), e.val(), e)) return (false);
+
+                    //lock down form from multiple submits
+                    g.preventDefault();
+                    var j = $(this);
+                    if (j.hasClass('disabled')) return;
+                    j.addClass('disabled');
+
+                    var jqxhr = $.post('/ajax/feedback/ajax_email_subscribe', {
+                        "email": e.val(),
+                        "csrf_token": $('form [name="csrf_token"]').val()
+                    },
+                    function(data) {
+                        if (data) {
+                            if (data.error) {
+                                j.removeClass('disabled');
+                                var resp = {
+                                    'val': false,
+                                    'error': data.error.email
+                                };
+                                return update_inline_validation(e, resp);
+                            } else {
+                                if (data.result) {
+                                    var resp = {
+                                        'val': true,
+                                        'msg': 'Thanks for signing up. You\'ll receive an email to confirm your subscription.'
+                                    };
+                                    $('input[name="email_signup"]').val('');
+                                    _gaq.push(['_trackEvent', 'Footer Email Signup', 'Email Signup Success', '/']);
+                                    $('.signuppending').addClass('none');
+                                    $('.signupsuccess').removeClass('none');
+                                } else {
+                                    j.removeClass('disabled');
+                                    resp = {
+                                        'val': false,
+                                        'error': 'Looks like you\'re already subscribed to our email list.'
+                                    };
+                                }
+                                return update_inline_validation(e, resp);
+                            }
+                        }
+                    },
+                    "json")
+
+                    return false;
+                });
+
+                function validate_input(name, val, target) {
+                    response = {
+                        'val': true
+                    };
+
+                    if (val == '' || val == ' ' || val == '  ' || val == '   ') response = {
+                        'val': false,
+                        'error': 'Required'
+                    };
+
+                    return update_inline_validation(target, response);
+                }
+
+                function update_inline_validation(target, response) {
+
+                    var control_group = target.closest('.control-group, .form-group');
+                    if (response.val === false) {
+
+                        control_group.addClass('error has-error');
+                        control_group.find('.help-block').html(response.error).show();
+                        return false;
+                    } else {
+                        control_group.removeClass('error has-error');
+                        //control_group.find('.help-inline').html('').hide();
+                        control_group.find('.help-block').html(response.msg).show();
+                        return true;
+                    }
+                }
+
+                var img_url = '../images/image_1.png';
+                var firstlast_sld = 'yourname';
+
+                $('.bigimg').css({
+                    'background-image': 'url(' + img_url + ')',
+                    'background-color': '#',
+                    /*	'background-position': '', */
+                });
+
+                /* Animate Name TLDs */
+                var animationDelay = 3000,
+                typeLettersDelay = 150,
+                selectionDuration = 500,
+                typeAnimationDelay = selectionDuration + 800,
+                revealDuration = 600,
+                revealAnimationDelay = 1500;
+
+                initHeadline();
+
+                function initHeadline() {
+                    singleLetters($('.cd-headline.letters').find('a.textletters'));
+                    animateHeadline($('.cd-headline'));
+                }
+
+                function singleLetters(words) {
+                    words.each(function() {
+                        var word = $(this),
+                        letters = word.text().split(''),
+                        selected = word.hasClass('is-visible');
+                        for (i in letters) {
+                            if (word.parents('.rotate-2').length > 0) letters[i] = '<em>' + letters[i] + '</em>';
+                            letters[i] = (selected) ? '<i class="in">' + letters[i] + '</i>': '<i>' + letters[i] + '</i>';
+                        }
+                        var newLetters = letters.join('');
+                        word.html(newLetters).css('opacity', 1);
+                    });
+                }
+
+                function animateHeadline(headlines) {
+                    var duration = animationDelay;
+                    headlines.each(function() {
+                        var headline = $(this);
+
+                        if (headline.hasClass('loading-bar')) {
+
+} else if (headline.hasClass('clip')) {
+                            var spanWrapper = headline.find('.cd-words-wrapper'),
+                            newWidth = spanWrapper.width() + 10 spanWrapper.css('width', newWidth);
+                        } else if (!headline.hasClass('type')) {
+                            //assign to .cd-words-wrapper the width of its longest word
+                            var words = headline.find('.cd-words-wrapper b'),
+                            width = 0;
+                            words.each(function() {
+                                var wordWidth = $(this).width();
+                                if (wordWidth > width) width = wordWidth;
+                            });
+                            headline.find('.cd-words-wrapper').css('width', width);
+                        };
+
+                        setTimeout(function() {
+                            hideWord(headline.find('.is-visible').eq(0))
+                        },
+                        duration);
+                    });
+                }
+
+                function hideWord(word) {
+                    var nextWord = takeNext(word);
+
+                    if (word.parents('.cd-headline').hasClass('type')) {
+                        var parentSpan = word.parent('.cd-words-wrapper');
+                        parentSpan.addClass('selected').removeClass('waiting');
+                        setTimeout(function() {
+                            parentSpan.removeClass('selected');
+                            word.removeClass('is-visible').addClass('is-hidden').children('i').removeClass('in').addClass('out');
+                        },
+                        selectionDuration);
+                        setTimeout(function() {
+                            showWord(nextWord, typeLettersDelay)
+                        },
+                        typeAnimationDelay);
+
+                    } else if (word.parents('.cd-headline').hasClass('letters')) {
+                        var bool = (word.children('i').length >= nextWord.children('i').length) ? true: false;
+                        hideLetter(word.find('i').eq(0), word, bool, lettersDelay);
+                        showLetter(nextWord.find('i').eq(0), nextWord, bool, lettersDelay);
+
+                    } else if (word.parents('.cd-headline').hasClass('clip')) {
+                        word.parents('.cd-words-wrapper').animate({
+                            width: '2px'
+                        },
+                        revealDuration,
+                        function() {
+                            switchWord(word, nextWord);
+                            showWord(nextWord);
+                        });
+
+                    } else {
+                        switchWord(word, nextWord);
+                        setTimeout(function() {
+                            hideWord(nextWord)
+                        },
+                        animationDelay);
+                    }
+                }
+
+                function showWord(word, duration) {
+                    if (word.parents('.cd-headline').hasClass('type')) {
+                        showLetter(word.find('i').eq(0), word, false, duration);
+                        word.addClass('is-visible').removeClass('is-hidden');
+
+                    } else if (word.parents('.cd-headline').hasClass('clip')) {
+                        word.parents('.cd-words-wrapper').animate({
+                            'width': word.width() + 2
+                        },
+                        revealDuration,
+                        function() {
+                            setTimeout(function() {
+                                hideWord(word)
+                            },
+                            revealAnimationDelay);
+                        });
+                    }
+                }
+
+                function hideLetter(letter, word, bool, duration) {
+                    letter.removeClass('in').addClass('out');
+
+                    if (!letter.is(':last-child')) {
+                        setTimeout(function() {
+                            hideLetter(letter.next(), word, bool, duration);
+                        },
+                        duration);
+                    } else if (bool) {
+                        setTimeout(function() {
+                            hideWord(takeNext(word))
+                        },
+                        animationDelay);
+                    }
+
+                    if (letter.is(':last-child') && $('html').hasClass('no-csstransitions')) {
+                        var nextWord = takeNext(word);
+                        switchWord(word, nextWord);
+                    }
+                }
+
+                function showLetter(letter, word, bool, duration) {
+                    letter.addClass('in').removeClass('out');
+
+                    if (!letter.is(':last-child')) {
+                        setTimeout(function() {
+                            showLetter(letter.next(), word, bool, duration);
+                        },
+                        duration);
+                    } else {
+                        if (word.parents('.cd-headline').hasClass('type')) {
+                            setTimeout(function() {
+                                word.parents('.cd-words-wrapper').addClass('waiting');
+                            },
+                            200);
+                        }
+                        if (!bool) {
+                            setTimeout(function() {
+                                hideWord(word)
+                            },
+                            animationDelay)
+                        }
+                    }
+                }
+
+                function takeNext(word) {
+                    return (!word.is(':last-child')) ? word.next() : word.parent().children().eq(0);
+                }
+
+                function takePrev(word) {
+                    return (!word.is(':first-child')) ? word.prev() : word.parent().children().last();
+                }
+
+                function switchWord(oldWord, newWord) {
+                    oldWord.removeClass('is-visible').addClass('is-hidden');
+                    newWord.removeClass('is-hidden').addClass('is-visible');
+                }
+
+                //firstlast links to either curated search or generic name search
+                $('.cd-headline').click(function(e) {
+                    if (firstlast_sld == 'yourname') {
+                        _gaq.push(['_trackEvent', 'Homepage 020316', 'link', 'FirstLast Generic Button']);
+
+                        setTimeout(function() {
+                            //window.location.href= '/name-search?tag=home-firstlast';
+                            window.location.href = '/onepagewebsite';
+                        },
+                        400);
+                    } else {
+                        _gaq.push(['_trackEvent', 'Homepage 020316', 'link', 'FirstLast Generic Button']);
+                        var tld = $(this).find('a.is-visible').attr('data-tld');
+                        setTimeout(function() {
+                            if (typeof tld == 'undefined') tld = 'me';
+                            //window.location.href= '/domain/search-curated/' + firstlast_sld + '.' + tld + '?tag=home-firstlast';
+                            window.location.href = '/onepagewebsite';
+                        },
+                        400);
+                    }
+                });
+                $(document).ready(function() {
+                    _gaq.push(['_trackEvent', 'Homepage 020316', 'impression', 'FirstLast Generic Button', , true]);
+                });</script>
+            <script>// tabbed content
+                // http://www.entheosweb.com/tutorials/css/tabs.asp
+                $(".tab_content").hide();
+                $(".tab_content:first").show();
+
+                /* if in tab mode */
+                $("ul.tabs li").click(function() {
+
+                    $(".tab_content").hide();
+                    var activeTab = $(this).attr("rel");
+                    $("#" + activeTab).fadeIn();
+
+                    $("ul.tabs li").removeClass("active");
+                    $(this).addClass("active");
+
+                    $(".tab_drawer_heading").removeClass("d_active");
+                    $(".tab_drawer_heading[rel^='" + activeTab + "']").addClass("d_active");
+
+                });
+                /* if in drawer mode */
+                $(".tab_drawer_heading").click(function() {
+
+                    $(".tab_content").hide();
+                    var d_activeTab = $(this).attr("rel");
+                    $("#" + d_activeTab).fadeIn();
+
+                    $(".tab_drawer_heading").removeClass("d_active");
+                    $(this).addClass("d_active");
+
+                    $("ul.tabs li").removeClass("active");
+                    $("ul.tabs li[rel^='" + d_activeTab + "']").addClass("active");
+                });
+
+                /* Extra class "tab_last"
+	   to add border to right side
+	   of last tab */
+                $('ul.tabs li').last().addClass("tab_last");</script>
+            <script>var AnswerDash; !
+                function(e, t, n, s, a) {
+                    if (!t.getElementById(s)) {
+                        var i, r = t.createElement(n),
+                        c = t.getElementsByTagName(n)[0];
+                        e[a] || (i = e[a] = function() {
+                            i.__oninit.push(arguments)
+                        },
+                        i.__oninit = []),
+                        r.type = "text/javascript",
+                        r.async = !0,
+                        r.src = "https://p1.answerdash.com/answerdash.min.js?siteid=1017",
+                        r.setAttribute("id", s),
+                        c.parentNode.insertBefore(r, c)
+                    }
+                } (window, document, "script", "answerdash-script", "AnswerDash");</script>
+            <script type="text/javascript">$(document).ready(function() {
+                    $('#te_cl p').click(function() {
+                        $('p').removeClass("activecolor");
+                        $(this).addClass("activecolor");
+                    });
+                });</script>
+            <script type="text/javascript">$(document).ready(function() {
+                    $('#te_cl p').click(function() {
+                        $('p').removeClass("activecolor");
+                        $(this).addClass("activecolor");
+                    });
+                });
+
+                $(document).ready(function() {
+                    $('#te_cl2 p').click(function() {
+                        $('p').removeClass("activecolor2");
+                        $(this).addClass("activecolor2");
+                    });
+                });</script>
+    </body>
+
+</html>
